@@ -10,9 +10,9 @@ currentFile = file.File(args.filepath);
 
 currentDataset = dataset.Dataset(currentFile);
 
-print("Taille du fichier: " + str(currentFile.size()));
-print("Date de derniere modification: "+ str(currentFile.lastModification()));
-print("Encodage: "+ str(currentFile.encoding()));
+print("Taille du fichier: " + str(currentFile.getSize()));
+print("Date de derniere modification: "+ str(currentFile.getLastModificationDate()));
+print("Encodage: "+ str(currentFile.getEncoding()));
 
 print(currentDataset.getData());
 print(currentDataset.getColumnsTypes());
