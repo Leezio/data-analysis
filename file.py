@@ -1,8 +1,9 @@
-import os, time, chardet
+import os, time, chardet;
 
 # File class
 class File:
     
+    # Constructor
     def __init__(self, filepath):
         self.filepath = filepath; 
     
@@ -21,3 +22,6 @@ class File:
     # Return the file encoding
     def encoding(self):
         return chardet.detect(open(self.filepath,"r").read()).get("encoding");
+        # Other solution, but more slow
+        #import magic
+        #return magic.Magic(mime_encoding=True).from_buffer(open(self.filepath).read());
