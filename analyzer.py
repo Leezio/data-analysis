@@ -71,14 +71,14 @@ class Analyzer:
     # Return a list with effective of qualitatives variables by columns
     def getEffectiveValues(self):
         list = [];
-        for i in range(0, self.getNbVariablesQualitatives()):
-            list.append(self.dataFrame[self.getQualitativesVarList()[i]].value_counts().__str__());
+        for i in range(0, self.getNbQualitativesVar()):
+            list.append(self.dataset[self.getQualitativesVarList()[i]].value_counts().__str__());
         return list;
 
     # Return a list with modality of qualitatives variables by columns
     def getModalityValues(self):
         list = [];
-        for i in range(1, self.getNbVariablesQualitatives()):
-            list.append(self.dataFrame[self.getQualitativesVarList()[i]].unique().__str__());
+        for i in range(1, self.getNbQualitativesVar()):
+            list.append(self.dataset[self.getQualitativesVarList()[i]].unique().__str__());
         return list;
     

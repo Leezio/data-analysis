@@ -1,11 +1,11 @@
-import os;
+import os, displayer;
 
 # GUI class
 class GUI:
     
     # Constructor
-    def __init__(self, header):
-        self.header = header + "\n";
+    def __init__(self, header, file, dataset):
+        self.displayer = displayer.Displayer(header, file, dataset); 
     
     # Allow to clear console
     def clear(self): 
@@ -21,9 +21,18 @@ class GUI:
     def pressAnyKey(self):
         try:
             input("Appuyez sur une touhe pour continuer ...");
+            self.clear();
+            self.getDisplayer().displayHeader();
         except SyntaxError:
             pass
+    
+    # Return displayer
+    def getDisplayer(self):
+        return self.displayer;
         
-    # Return GUI header    
-    def getHeader(self):
-        return self.header;
+    def newAnswer(self, text):
+        value = input(text);
+        self.clear();
+        self.getDisplayer().displayHeader();
+        return value;
+        
