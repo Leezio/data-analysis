@@ -18,7 +18,7 @@ class Analyzer:
         list = [];
         for i in range(0, len(self.dataset.dtypes)):
             if self.dataset.dtypes[i] == self.QUALITATIVE_OBJECT_TYPE:
-                list.append(self.dataset.columns.values[i]);
+                list.append(self.dataset.columns.values[i].__str__());
         return list;
     
     # Return number of quantitatives variables

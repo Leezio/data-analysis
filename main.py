@@ -1,7 +1,7 @@
-from classes import file, dataset, gui;
+from classes import file, dataset, gui, log;
 import argparse;
 
-version = "v1.2";
+version = "v1.3";
 
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
@@ -14,6 +14,8 @@ args=parser.parse_args();
 if args.version:
     print(version);
     exit();
+
+# End if
 
 # End if
 
@@ -32,6 +34,10 @@ gui.getDisplayer().displayHeader();
 # If user want options menu
 if args.user:
     
+    if args.log:
+        currentLogFile = log.Log("log.txt", currentFile, currentDataset);
+        currentLogFile.save();
+    
     mainAnswer = secondAnswer = "";
     
     while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT):
@@ -41,13 +47,13 @@ if args.user:
         mainAnswer = gui.newAnswer("Reponse: ");
         
         while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT and secondAnswer != gui.getDisplayer().SECOND_MENU_RETURN):
-            
-            gui.getDisplayer().displaySecondMenu();
-                
+                 
             if (mainAnswer == gui.getDisplayer().SECOND_MENU_FILE):
+                gui.getDisplayer().displaySecondMenu();
                 gui.getDisplayer().displayFileMenu();
                 
             elif (mainAnswer == gui.getDisplayer().SECOND_MENU_DATA):
+                gui.getDisplayer().displaySecondMenu();
                 gui.getDisplayer().displayDataMenu();
         
             elif (mainAnswer == gui.getDisplayer().MAIN_MENU_EXIT):
@@ -55,6 +61,7 @@ if args.user:
             
             else:
                 gui.getDisplayer().displayInvalidCommand();
+                break;
             
             # End if
             
@@ -99,6 +106,7 @@ if args.user:
             
             else:
                 gui.getDisplayer().displayInvalidCommand();
+                break;
             
             # End if
             
@@ -108,16 +116,17 @@ if args.user:
         
     #End while      
 else:
+    
     # Display all file informations
     gui.getDisplayer().displayFileSize();
     gui.getDisplayer().displayFileEncoding();
     gui.getDisplayer().displayLastFileModificationDate();
     
     # Display all data informations
-    gui.getDisplayer().displayData();
-    gui.getDisplayer().displayColumnsTypes();
-    gui.getDisplayer().displayNbColumns();
-    gui.getDisplayer().displayNbLines();
+    #gui.getDisplayer().displayData();
+    #gui.getDisplayer().displayColumnsTypes();
+    #gui.getDisplayer().displayNbColumns();
+    #gui.getDisplayer().displayNbLines();
     
     # Display all qualitatives variables informations
     gui.getDisplayer().displayNbQualitativesVar();
@@ -134,10 +143,16 @@ else:
     gui.getDisplayer().displayMedianValues();
     gui.getDisplayer().displayAverageValues();
     gui.getDisplayer().displayStandardDeviationValues();
+    
+    
+    # Enable log file
+    if args.log:
+        currentLogFile = log.Log("log.txt", currentFile, currentDataset);
+        currentLogFile.save();
 
+    gui.pressAnyKey();
+    
 # End if
-
-gui.pressAnyKey();
 
 gui.clear();
 

@@ -37,7 +37,7 @@ class Displayer:
         
     # Display last file modification date
     def displayLastFileModificationDate(self):
-        self.printr("Date de derniere modification: "+ self.file.getLastModificationDate());
+        self.printr("Date de derniere modification: " + self.file.getLastModificationDate());
         
     # Display file encoding
     def displayFileEncoding(self):
