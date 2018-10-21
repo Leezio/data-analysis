@@ -1,6 +1,17 @@
 # Dataset class
 class Displayer:
     
+    MAIN_MENU_EXIT = "q";
+    SECOND_MENU_RETURN = "r";
+    SECOND_MENU_FILE = "f";
+    SECOND_MENU_DATA = "d";
+    FILE_INFORMATION_SIZE = "t";
+    FILE_INFORMATION_ENCODING = "e";
+    FILE_INFORMATION_DATE = "d";
+    FILE_INFORMATION_ALL = "a";
+    DATA_INFORMATION_QUANTITATIVES = "v";
+    DATA_INFORMATION_QUALITATIVES = "l";
+    
     # Constructor
     def __init__(self, header, file, dataset):
         self.header = header;
@@ -69,24 +80,24 @@ class Displayer:
         
     def displayMainMenu(self):
         print("Que voulez-vous faire ?");
-        print("    f - Afficher les informations sur le fichier");
-        print("    d - Afficher les informations sur les donnees");
-        self.printr("    q - Quitter")
+        print("    " + self.SECOND_MENU_FILE + " - Afficher les informations sur le fichier");
+        print("    " + self.SECOND_MENU_DATA + " - Afficher les informations sur les donnees");
+        self.printr("    " + self.MAIN_MENU_EXIT + " - Quitter")
         
     def displaySecondMenu(self):
         print("Quelle informations voulez-vous afficher ?");
         
     def displayFileMenu(self):
-        print("    t - Afficher la taille du fichier");
-        print("    e - Afficher l'encodage du fichier");
-        print("    d - Afficher la date de derniere modification du fichier");
-        print("    a - Afficher l'ensemble des informations");
-        self.printr("    r - Retour au menu principal")
+        print("    " + self.FILE_INFORMATION_SIZE + " - Afficher la taille du fichier");
+        print("    " + self.FILE_INFORMATION_ENCODING + " - Afficher l'encodage du fichier");
+        print("    " + self.FILE_INFORMATION_DATE + " - Afficher la date de derniere modification du fichier");
+        print("    " + self.FILE_INFORMATION_ALL + " - Afficher l'ensemble des informations");
+        self.printr("    " + self.SECOND_MENU_RETURN + " - Retour au menu principal")
      
     def displayDataMenu(self):
-        print("    v - Afficher les informations sur les variables quantitatives");
-        print("    l - Afficher les informations sur les variables qualitatives");
-        self.printr("    r - Retour au menu principal")
+        print("    " + self.DATA_INFORMATION_QUANTITATIVES + " - Afficher les informations sur les variables quantitatives");
+        print("    " + self.DATA_INFORMATION_QUALITATIVES + " - Afficher les informations sur les variables qualitatives");
+        self.printr("    " + self.SECOND_MENU_RETURN + " - Retour au menu principal")
         
     def displayInvalidCommand(self):
         self.printr("Commande invalide")
