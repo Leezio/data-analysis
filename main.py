@@ -10,6 +10,7 @@ parser.add_argument("-l","--log", action="store_true", help="Activer l'enregistr
 parser.add_argument("-v","--version", action="store_true", help="Retourne la version du script");
 args=parser.parse_args();
 
+# Display script version
 if args.version:
     print(version);
     exit();
