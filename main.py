@@ -6,10 +6,13 @@ parser.add_argument("-u","--user", action="store_true", help="Activer l'interact
 parser.add_argument("-l","--log", action="store_true", help="Activer l'enregistrement dans un fichier de log");
 args=parser.parse_args();
 
+# Init file instance
 currentFile = file.File(args.filepath);
 
+# Init dataset instance
 currentDataset = dataset.Dataset(currentFile);
 
+# Init GUI instance
 gui = gui.GUI("Data Analysis - v1.1", currentFile, currentDataset);
 
 gui.clear();
@@ -18,7 +21,7 @@ gui.getDisplayer().displayHeader();
 if args.user:
     mainAnswer = "";
     secondAnswer = "";
-    while mainAnswer != "q":
+    while mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT:
         gui.getDisplayer().displayMainMenu();
         
         mainAnswer = gui.newAnswer("Reponse: ");

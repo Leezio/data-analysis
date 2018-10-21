@@ -30,6 +30,7 @@ class GUI:
     def getDisplayer(self):
         return self.displayer;
         
+    # Return value of new input and clear current tty
     def newAnswer(self, text):
         value = input(text);
         self.clear();
