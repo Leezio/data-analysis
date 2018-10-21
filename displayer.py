@@ -43,11 +43,11 @@ class Displayer:
 
     # Display data
     def displayData(self):
-        self.printr(self.dataset.getData());
+        print(self.dataset.getData());
 
     # Display columns types
     def displayColumnsTypes(self):
-        self.printr(cself.dataset.getColumnsTypes());
+        print(self.dataset.getColumnsTypes());
 
     # Display number of columns
     def displayNbColumns(self):

@@ -82,3 +82,13 @@ class Analyzer:
             list.append(self.dataset[self.getQualitativesVarList()[i]].unique().__str__());
         return list;
     
+    def getNbFrequences(self):
+        list = []
+        print(self.getNbQualitativesVar())
+        for i in range(0, self.getNbQualitativesVar()):
+            effectif = self.dataset[self.getQualitativesVarList()[i]].value_counts()
+            effectifTotal = self.dataset[self.getQualitativesVarList()[i]].count()
+            print(effectif/effectifTotal)
+            #list.append(self.dataset[self.getNbQualitativesVar()[i]].value_counts()/self.dataset[self.getQualitativesVarList()[i]].count().__str__());
+        return list;
+    

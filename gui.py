@@ -8,7 +8,7 @@ class GUI:
         self.displayer = displayer.Displayer(header, file, dataset); 
     
     # Allow to clear console
-    def clear(self): 
+    def clear(self):
         # For windows 
         if os.name == 'nt': 
             _ = os.system('cls');

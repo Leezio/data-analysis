@@ -19,11 +19,11 @@ class Dataset:
     
     # Return number of columns
     def getNbColumns(self):
-        return self.data.shape[1];
+        return self.data.shape[1].__str__();
     
     # Return number of lines
     def getNbLines(self):
-        return self.data.shape[0];
+        return self.data.shape[0].__str__();
     
     # Return dataset analyzer instance
     def getAnalyzer(self):

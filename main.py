@@ -112,6 +112,8 @@ else:
     gui.getDisplayer().displayAverageValues();
     gui.getDisplayer().displayStandardDeviationValues();
 
+gui.pressAnyKey();
+
 gui.clear();
 
 print("Bye !");
