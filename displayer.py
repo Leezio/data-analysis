@@ -2,13 +2,16 @@
 class Displayer:
     
     MAIN_MENU_EXIT = "q";
+    
     SECOND_MENU_RETURN = "r";
     SECOND_MENU_FILE = "f";
     SECOND_MENU_DATA = "d";
+    
     FILE_INFORMATION_SIZE = "t";
     FILE_INFORMATION_ENCODING = "e";
     FILE_INFORMATION_DATE = "d";
     FILE_INFORMATION_ALL = "a";
+    
     DATA_INFORMATION_QUANTITATIVES = "v";
     DATA_INFORMATION_QUALITATIVES = "l";
     

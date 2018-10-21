@@ -20,7 +20,7 @@ class GUI:
     # Wait the user press any key       
     def pressAnyKey(self):
         try:
-            input("Appuyez sur une touhe pour continuer ...");
+            input("Appuyez sur une touche pour continuer ...");
             self.clear();
             self.getDisplayer().displayHeader();
         except SyntaxError:
