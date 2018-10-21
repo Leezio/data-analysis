@@ -1,11 +1,18 @@
 from classes import file, dataset, gui;
 import argparse;
 
+version = "v1.1";
+
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
 parser.add_argument("-u","--user", action="store_true", help="Activer l'interaction utilisateur");
 parser.add_argument("-l","--log", action="store_true", help="Activer l'enregistrement dans un fichier de log");
+parser.add_argument("-v","--version", action="store_true", help="Retourne la version du script");
 args=parser.parse_args();
+
+if args.version:
+    print(version);
+    exit();
 
 # Init file instance
 currentFile = file.File(args.filepath);
@@ -14,15 +21,18 @@ currentFile = file.File(args.filepath);
 currentDataset = dataset.Dataset(currentFile);
 
 # Init GUI instance
-gui = gui.GUI("Data Analysis - v1.1", currentFile, currentDataset);
+gui = gui.GUI("Data Analysis - " + version, currentFile, currentDataset);
 
 gui.clear();
 gui.getDisplayer().displayHeader();
 
+# If user want options menu
 if args.user:
-    mainAnswer = "";
-    secondAnswer = "";
+    
+    mainAnswer = secondAnswer = "";
+    
     while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT):
+        
         gui.getDisplayer().displayMainMenu();
         
         mainAnswer = gui.newAnswer("Reponse: ");
@@ -42,6 +52,8 @@ if args.user:
             
             else:
                 gui.getDisplayer().displayInvalidCommand();
+            
+            # End if
             
             secondAnswer = gui.newAnswer("Reponse: ");
                 
@@ -76,6 +88,7 @@ if args.user:
                 gui.getDisplayer().displayQualitativesVarList();
                 gui.getDisplayer().displayModalityValues();
                 gui.getDisplayer().displayEffectiveValues();
+                gui.getDisplayer().displayFrequencyValues();
                 
             elif (secondAnswer == gui.getDisplayer().SECOND_MENU_RETURN):
                 secondAnswer = False;
@@ -83,9 +96,14 @@ if args.user:
             
             else:
                 gui.getDisplayer().displayInvalidCommand();
-                
+            
+            # End if
+            
             gui.pressAnyKey(); 
-               
+        
+        # End while
+        
+    #End while      
 else:
     # Display all file informations
     gui.getDisplayer().displayFileSize();
@@ -103,6 +121,7 @@ else:
     gui.getDisplayer().displayQualitativesVarList();
     gui.getDisplayer().displayModalityValues();
     gui.getDisplayer().displayEffectiveValues();
+    gui.getDisplayer().displayFrequencyValues();
     
     # Display all quantitatives variables informations
     gui.getDisplayer().displayNbQuantitativesVar();
@@ -112,6 +131,8 @@ else:
     gui.getDisplayer().displayMedianValues();
     gui.getDisplayer().displayAverageValues();
     gui.getDisplayer().displayStandardDeviationValues();
+
+# End if
 
 gui.pressAnyKey();
 

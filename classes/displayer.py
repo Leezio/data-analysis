@@ -1,3 +1,5 @@
+import numpy;
+
 # Dataset class
 class Displayer:
     
@@ -22,7 +24,7 @@ class Displayer:
         self.dataset = dataset;
     
     # Override print function and add breakline
-    def printr(self, value):
+    def printr(self, value = ""):
         print(value + "\n");
         
     # Display header
@@ -71,7 +73,15 @@ class Displayer:
 
     # Display a list with effective of qualitatives variables
     def displayEffectiveValues(self):
-        self.printr("Les effectifes des variables qualitatives sont: " + self.dataset.getAnalyzer().getEffectiveValues().__str__());
+        self.printr("Les effectifes des variables qualitatives sont:");
+        for i in range(0, len(self.dataset.getAnalyzer().getEffectiveValues())):
+            print(self.dataset.getAnalyzer().getEffectiveValues()[i]);
+    
+    # Display a list with frequency of qualitatives variables
+    def displayFrequencyValues(self):
+        self.printr("Les frequences des variables qualitatives sont:");
+        for i in range(0, len(self.dataset.getAnalyzer().getFrequencyValues())):
+            print(self.dataset.getAnalyzer().getFrequencyValues()[i]);
 
     # Display number of quantitatives variables
     def displayNbQuantitativesVar(self):
