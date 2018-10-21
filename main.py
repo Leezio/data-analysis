@@ -1,4 +1,5 @@
-import argparse, file, dataset, gui;
+from classes import file, dataset, gui;
+import argparse;
 
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
@@ -21,12 +22,12 @@ gui.getDisplayer().displayHeader();
 if args.user:
     mainAnswer = "";
     secondAnswer = "";
-    while mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT:
+    while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT):
         gui.getDisplayer().displayMainMenu();
         
         mainAnswer = gui.newAnswer("Reponse: ");
         
-        while (secondAnswer != gui.getDisplayer().SECOND_MENU_RETURN):
+        while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT and secondAnswer != gui.getDisplayer().SECOND_MENU_RETURN):
             
             gui.getDisplayer().displaySecondMenu();
                 
@@ -83,8 +84,8 @@ if args.user:
             else:
                 gui.getDisplayer().displayInvalidCommand();
                 
-            gui.pressAnyKey();
-                
+            gui.pressAnyKey(); 
+               
 else:
     # Display all file informations
     gui.getDisplayer().displayFileSize();

@@ -1,4 +1,5 @@
-import pandas, analyzer;
+from classes import analyzer;
+import pandas;
 
 # Dataset class
 class Dataset:

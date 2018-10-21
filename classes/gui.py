@@ -1,4 +1,5 @@
-import os, displayer;
+from classes import displayer;
+import os;
 
 # GUI class
 class GUI:

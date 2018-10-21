@@ -78,7 +78,7 @@ class Analyzer:
     # Return a list with modality of qualitatives variables by columns
     def getModalityValues(self):
         list = [];
-        for i in range(1, self.getNbQualitativesVar()):
+        for i in range(0, self.getNbQualitativesVar()):
             list.append(self.dataset[self.getQualitativesVarList()[i]].unique().__str__());
         return list;
     
