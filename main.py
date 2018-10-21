@@ -1,7 +1,7 @@
 from classes import file, dataset, gui;
 import argparse;
 
-version = "v1.1";
+version = "v1.2";
 
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
