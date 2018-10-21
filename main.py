@@ -14,6 +14,8 @@ if args.version:
     print(version);
     exit();
 
+# End if
+
 # Init file instance
 currentFile = file.File(args.filepath);
 
