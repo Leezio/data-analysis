@@ -4,7 +4,7 @@ import os;
 class Log:
 
     # Constructor
-    def __init__(self, filepath, file, dataset):
+    def __init__(self, filepath, file, dataset, l10n):
         try:
             os.remove(filepath)
         except OSError:
@@ -12,6 +12,7 @@ class Log:
         self.logFile = open(filepath, "a");
         self.file = file;
         self.dataset = dataset;
+        self.l10n = l10n;
 
     def write(self, text):
         self.logFile.write(text + "\n\n");

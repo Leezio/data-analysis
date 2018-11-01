@@ -1,7 +1,7 @@
 from classes import l10n, file, dataset, gui, log;
 import argparse;
 
-version = "v1.3";
+version = "v1.3.1";
 
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
@@ -159,8 +159,10 @@ else:
     
     # Enable log file
     if args.log:
-        currentLogFile = log.Log("log.txt", currentFile, currentDataset);
+        currentLogFile = log.Log("log.txt", currentFile, currentDataset, currentL10n);
         currentLogFile.save();
+    
+    # End if
 
     gui.pressAnyKey();
     
