@@ -1,7 +1,7 @@
 from classes import l10n, file, dataset, gui, log;
 import argparse;
 
-version = "v1.7.1";
+version = "v1.3";
 
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
