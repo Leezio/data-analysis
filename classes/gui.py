@@ -5,8 +5,8 @@ import os;
 class GUI:
     
     # Constructor
-    def __init__(self, header, file, dataset):
-        self.displayer = displayer.Displayer(header, file, dataset); 
+    def __init__(self, header, file, dataset, l10n):
+        self.displayer = displayer.Displayer(header, file, dataset, l10n); 
     
     # Allow to clear console
     def clear(self):

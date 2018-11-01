@@ -1,7 +1,7 @@
-from classes import file, dataset, gui, log;
+from classes import l10n, file, dataset, gui, log;
 import argparse;
 
-version = "v1.3";
+version = "v1.5";
 
 parser = argparse.ArgumentParser();
 parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
@@ -17,7 +17,8 @@ if args.version:
 
 # End if
 
-# End if
+# Init l10n instance
+currentL10n = l10n.L10n("fr");
 
 # Init file instance
 currentFile = file.File(args.filepath);
@@ -26,7 +27,7 @@ currentFile = file.File(args.filepath);
 currentDataset = dataset.Dataset(currentFile);
 
 # Init GUI instance
-gui = gui.GUI("Data Analysis - " + version, currentFile, currentDataset);
+gui = gui.GUI("Data Analysis - " + version, currentFile, currentDataset, currentL10n);
 
 gui.clear();
 gui.getDisplayer().displayHeader();
@@ -44,7 +45,7 @@ if args.user:
         
         gui.getDisplayer().displayMainMenu();
         
-        mainAnswer = gui.newAnswer("Reponse: ");
+        mainAnswer = gui.newAnswer(currentL10n.getL10n("ANSWER") + " ");
         
         while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT and secondAnswer != gui.getDisplayer().SECOND_MENU_RETURN):
                  
@@ -65,7 +66,7 @@ if args.user:
             
             # End if
             
-            secondAnswer = gui.newAnswer("Reponse: ");
+            secondAnswer = gui.newAnswer(currentL10n.getL10n("ANSWER") + " ");
                 
             if (secondAnswer == gui.getDisplayer().FILE_INFORMATION_SIZE):
                 gui.getDisplayer().displayFileSize();
@@ -82,10 +83,17 @@ if args.user:
                 gui.getDisplayer().displayFileEncoding();
                 gui.getDisplayer().displayLastFileModificationDate();
                 
+            elif (secondAnswer == gui.getDisplayer().DATA_INFORMATION_TABLE):
+                # Display all data informations
+                gui.getDisplayer().displayNbColumns();
+                gui.getDisplayer().displayNbLines();
+                gui.getDisplayer().displayNbQualitativesVar();
+                gui.getDisplayer().displayQualitativesVarList();
+                gui.getDisplayer().displayNbQuantitativesVar();
+                gui.getDisplayer().displayQuantitativesVarList();
+                
             elif (secondAnswer == gui.getDisplayer().DATA_INFORMATION_QUANTITATIVES):
                 # Display quantitatives variables informations
-               gui.getDisplayer().displayNbQuantitativesVar();
-               gui.getDisplayer().displayQuantitativesVarList();
                gui.getDisplayer().displayMinValues();
                gui.getDisplayer().displayMaxValues();
                gui.getDisplayer().displayMedianValues();
@@ -94,11 +102,13 @@ if args.user:
                 
             elif (secondAnswer == gui.getDisplayer().DATA_INFORMATION_QUALITATIVES):
                 # Display qualitatives variables informations
-                gui.getDisplayer().displayNbQualitativesVar();
-                gui.getDisplayer().displayQualitativesVarList();
                 gui.getDisplayer().displayModalityValues();
                 gui.getDisplayer().displayEffectiveValues();
                 gui.getDisplayer().displayFrequencyValues();
+                
+            elif (secondAnswer == gui.getDisplayer().DATA_INFORMATION_PLOT):
+                # Create plot box
+                currentDataset.createPlotBox();
                 
             elif (secondAnswer == gui.getDisplayer().SECOND_MENU_RETURN):
                 secondAnswer = False;
@@ -123,27 +133,27 @@ else:
     gui.getDisplayer().displayLastFileModificationDate();
     
     # Display all data informations
-    #gui.getDisplayer().displayData();
-    #gui.getDisplayer().displayColumnsTypes();
-    #gui.getDisplayer().displayNbColumns();
-    #gui.getDisplayer().displayNbLines();
-    
-    # Display all qualitatives variables informations
+    gui.getDisplayer().displayNbColumns();
+    gui.getDisplayer().displayNbLines();
     gui.getDisplayer().displayNbQualitativesVar();
     gui.getDisplayer().displayQualitativesVarList();
+    gui.getDisplayer().displayNbQuantitativesVar();
+    gui.getDisplayer().displayQuantitativesVarList();
+    
+    # Display all qualitatives variables informations
     gui.getDisplayer().displayModalityValues();
     gui.getDisplayer().displayEffectiveValues();
     gui.getDisplayer().displayFrequencyValues();
     
     # Display all quantitatives variables informations
-    gui.getDisplayer().displayNbQuantitativesVar();
-    gui.getDisplayer().displayQuantitativesVarList();
     gui.getDisplayer().displayMinValues();
     gui.getDisplayer().displayMaxValues();
     gui.getDisplayer().displayMedianValues();
     gui.getDisplayer().displayAverageValues();
     gui.getDisplayer().displayStandardDeviationValues();
     
+    # Create plot box
+    currentDataset.createPlotBox();
     
     # Enable log file
     if args.log:
@@ -156,4 +166,4 @@ else:
 
 gui.clear();
 
-print("Bye !");
+print(currentL10n.getL10n("BYE"));

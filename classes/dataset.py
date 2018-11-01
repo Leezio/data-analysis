@@ -29,3 +29,7 @@ class Dataset:
     # Return dataset analyzer instance
     def getAnalyzer(self):
         return self.currentAnalyzer;
+    
+    # Create plot box as png
+    def createPlotBox(self):
+        self.data.plot.box().get_figure().savefig('plot-box.png');
