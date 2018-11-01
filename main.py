@@ -108,6 +108,7 @@ if args.user:
                 
             elif (secondAnswer == gui.getDisplayer().DATA_INFORMATION_PLOT):
                 # Create plot box
+                gui.getDisplayer().displayCreatePlotSuccess();
                 currentDataset.createPlotBox();
                 
             elif (secondAnswer == gui.getDisplayer().SECOND_MENU_RETURN):
@@ -153,6 +154,7 @@ else:
     gui.getDisplayer().displayStandardDeviationValues();
     
     # Create plot box
+    gui.getDisplayer().displayCreatePlotSuccess();
     currentDataset.createPlotBox();
     
     # Enable log file

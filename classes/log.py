@@ -17,9 +17,8 @@ class Log:
         self.logFile.write(text + "\n\n");
 
     def save(self):
-
         list = [];
-
+        
         # Log all file informations
         list.append(self.l10n.getL10n("FILE_SIZE") + " " + self.file.getSize());
         list.append(self.l10n.getL10n("FILE_DATE") + " " + self.file.getLastModificationDate());

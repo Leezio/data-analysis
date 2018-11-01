@@ -1,4 +1,4 @@
-import numpy;
+import numpy, os;
 
 # Dataset class
 class Displayer:
@@ -113,6 +113,9 @@ class Displayer:
     # Display list with standard deviation of quantitatives variables
     def displayStandardDeviationValues(self):
         self.printr(self.l10n.getL10n("DATA_SDV_QUANT") + " " +  self.dataset.getAnalyzer().getStandardDeviationValues().__str__());
+
+    def displayCreatePlotSuccess(self):
+        self.printr(self.l10n.getL10n("PLOT_SUCCESS") + " " + os.getcwd());
 
     # Display main menu
     def displayMainMenu(self):
