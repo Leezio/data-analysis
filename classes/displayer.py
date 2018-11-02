@@ -147,3 +147,39 @@ class Displayer:
     # Display invalid command message
     def displayInvalidCommand(self):
         self.printr(self.l10n.getL10n("ERROR"))
+        
+    # Display all file informations
+    def displayAllFileInformations(self):
+        self.displayFileSize();
+        self.displayFileEncoding();
+        self.displayLastFileModificationDate();
+        
+    # Display all data informations
+    def displayAllDataInformations(self):
+        self.displayNbColumns();
+        self.displayNbLines();
+        self.displayNbQualitativesVar();
+        self.displayQualitativesVarList();
+        self.displayNbQuantitativesVar();
+        self.displayQuantitativesVarList();
+        
+    # Display all qualitatives variables informations
+    def displayAllQualitativesVariablesInformations(self):
+        self.displayModalityValues();
+        self.displayEffectiveValues();
+        self.displayFrequencyValues();
+    
+    # Display all quantitatives variables informations
+    def displayAllQuantitativesVariablesInformations(self):
+        self.displayMinValues();
+        self.displayMaxValues();
+        self.displayMedianValues();
+        self.displayAverageValues();
+        self.displayStandardDeviationValues();
+        
+    # Display all informations
+    def displayAll(self):
+        self.displayAllFileInformations();
+        self.displayAllDataInformations();
+        self.displayAllQualitativesVariablesInformations();
+        self.displayAllQuantitativesVariablesInformations();
