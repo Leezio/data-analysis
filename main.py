@@ -3,7 +3,7 @@ import argparse;
 
 try:
     
-    version = "v1.5";
+    version = "v1.5.1";
 
     parser = argparse.ArgumentParser();
     parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
