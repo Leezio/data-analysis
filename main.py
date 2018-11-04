@@ -3,7 +3,7 @@ import argparse;
 
 try:
 
-    version = "v1.5.2";
+    version = "v1.5.3";
 
     # Console args -l -u etc...
     parser = argparse.ArgumentParser();
@@ -131,31 +131,23 @@ try:
     # End if
     if args.log:
         
-    # Enable log file
-    currentLogFile = log.Log(currentFile, currentDataset, currentL10n);
+        # Enable log file
+        currentLogFile = log.Log(currentFile, currentDataset, currentL10n);
 
-    try:
-        if args.log is not None:
-            logFilepath = args.log;
-
-            # If log filepath end already with '/' character
-            if args.log.endswith("/") is False:
-                logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
-            else:
-                logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
-
-            # End if
-
+        logFilepath = args.logFilePath;
+        
+        # If log filepath end already with '/' character
+        if args.logFilePath.endswith("/") is False:
+            logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
         else:
-            logFilepath = currentLogFile.DEFAULT_LOG_FILE_NAME;
+            logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
 
         # End if
 
         currentLogFile.save(logFilepath);
 
-    except TypeError:
-        pass;
-
+    # End if
+        
     gui.clear();
 
     # Exit message
