@@ -3,12 +3,12 @@ import argparse;
 
 try:
     
-    version = "v1.4";
+    version = "v1.5";
 
     parser = argparse.ArgumentParser();
     parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
     parser.add_argument("-u","--user", action="store_true", help="Activer l'interaction utilisateur");
-    parser.add_argument("-l","--log", action="store_true", help="Activer l'enregistrement dans un fichier de log");
+    parser.add_argument("-l","--log", nargs="?", help="Activer l'enregistrement dans un fichier de log");
     parser.add_argument("-v","--version", action="store_true", help="Retourne la version du script");
     args=parser.parse_args();
 
@@ -34,14 +34,11 @@ try:
     gui.clear();
     gui.getDisplayer().displayHeader();
 
+    # Init variables
+    mainAnswer = secondAnswer = logFilepath = "";
+
     # If user want options menu
     if args.user:
-    
-        if args.log:
-            currentLogFile = log.Log("log.txt", currentFile, currentDataset);
-            currentLogFile.save();
-    
-        mainAnswer = secondAnswer = "";
     
         while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT):
         
@@ -123,17 +120,36 @@ try:
         gui.getDisplayer().displayCreatePlotSuccess();
         currentDataset.createPlotBox();
     
-        # Enable log file
-        if args.log:
-            currentLogFile = log.Log("log.txt", currentFile, currentDataset, currentL10n);
-            currentLogFile.save();
-    
         # End if
 
         gui.pressAnyKey();
     
     # End if
-
+    
+    # Enable log file
+    currentLogFile = log.Log(currentFile, currentDataset, currentL10n);
+        
+    try:
+        if args.log is not None:
+            logFilepath = args.log;
+            
+            if args.log.endswith("/") is False:
+                logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
+            else:
+                logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
+               
+            # End if
+        
+        else:
+            logFilepath = currentLogFile.DEFAULT_LOG_FILE_NAME;
+        
+        # End if
+        
+        currentLogFile.save(logFilepath);
+        
+    except TypeError:
+        pass;
+        
     gui.clear();
 
     print(currentL10n.getL10n("BYE"));

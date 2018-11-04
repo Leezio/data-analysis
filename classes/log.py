@@ -2,22 +2,27 @@ import os;
 
 # Class log
 class Log:
+    
+    DEFAULT_LOG_FILE_NAME = "log.txt";
 
     # Constructor
-    def __init__(self, filepath, file, dataset, l10n):
-        try:
-            os.remove(filepath)
-        except OSError:
-            pass
-        self.logFile = open(filepath, "a");
+    def __init__(self, file, dataset, l10n):
         self.file = file;
         self.dataset = dataset;
         self.l10n = l10n;
 
-    def write(self, text):
-        self.logFile.write(text + "\n\n");
-
-    def save(self):
+    def save(self, filepath):
+        
+        try:
+            os.remove(filepath)
+        except OSError:
+            pass;
+        
+        try:
+            logFile = open(filepath, "a");
+        except IOError:
+            print(self.l10n.getL10n("LOG_FILEPATH_NOT_AVAILABLE"));
+        
         list = [];
         
         # Log all file informations
@@ -46,4 +51,4 @@ class Log:
         list.append(self.l10n.getL10n("DATA_SDV_QUANT") + " " +  self.dataset.getAnalyzer().getStandardDeviationValues().__str__());
 
         for i in range(0, len(list)):
-            self.write(list[i]);
+            logFile.write(list[i] + "\n\n");
