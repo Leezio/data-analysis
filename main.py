@@ -134,15 +134,22 @@ try:
         # Enable log file
         currentLogFile = log.Log(currentFile, currentDataset, currentL10n);
 
-        logFilepath = args.logFilePath;
+        if args.logFilePath is not None:
         
-        # If log filepath end already with '/' character
-        if logFilepath.endswith("/") is False:
-            logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
-        else:
-            logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
+            logFilepath = args.logFilePath;
+        
+            # If log filepath end already with '/' character
+            if logFilepath.endswith("/") is False:
+                logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
+            else:
+                logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
 
-        # End if
+            # End if
+            
+        else:
+            logFilepath = currentLogFile.DEFAULT_LOG_FILE_NAME;
+            
+         # End if
 
         currentLogFile.save(logFilepath);
 
