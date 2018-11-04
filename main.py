@@ -3,7 +3,7 @@ import argparse;
 
 try:
     
-    version = "v1.5.1";
+    version = "v1.5.2";
 
     # Console args -l -u etc...
     parser = argparse.ArgumentParser();
