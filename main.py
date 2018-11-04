@@ -137,7 +137,7 @@ try:
         logFilepath = args.logFilePath;
         
         # If log filepath end already with '/' character
-        if args.logFilePath.endswith("/") is False:
+        if logFilepath.endswith("/") is False:
             logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
         else:
             logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
