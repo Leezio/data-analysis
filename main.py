@@ -128,28 +128,32 @@ try:
         gui.pressAnyKey();
     
     # End if
-    
+   
     # Enable log file
-    currentLogFile = log.Log(currentFile, currentDataset, currentL10n);
+    if args.log:
         
-    try:
-        if args.log is not None:
-            logFilepath = args.log;
+        currentLogFile = log.Log(currentFile, currentDataset, currentL10n);
+    
+        try:
+            if args.log is not None:
+                logFilepath = args.log;
             
-            # If log filepath end already with '/' character
-            if args.log.endswith("/") is False:
-                logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
-            else:
-                logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
+                # If log filepath end already with '/' character
+                if args.log.endswith("/") is False:
+                    logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
+                else:
+                    logFilepath += currentLogFile.DEFAULT_LOG_FILE_NAME;
                
+                # End if
+        
+            else:
+                logFilepath = currentLogFile.DEFAULT_LOG_FILE_NAME;
+        
             # End if
         
-        else:
-            logFilepath = currentLogFile.DEFAULT_LOG_FILE_NAME;
-        
-        # End if
-        
-        currentLogFile.save(logFilepath);
+            currentLogFile.save(logFilepath);
+            
+    #End if
         
     except TypeError:
         pass;
