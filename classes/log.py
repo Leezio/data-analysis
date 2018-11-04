@@ -15,6 +15,8 @@ class Log:
         
         try:
             os.remove(filepath)
+            
+        # If it not have file to remove
         except OSError:
             pass;
         
@@ -50,7 +52,8 @@ class Log:
 
             for i in range(0, len(list)):
                 logFile.write(list[i] + "\n\n");
-            
+        
+        # If file not found
         except FileNotFoundError:
             print(self.l10n.getL10n("LOG_FILEPATH_NOT_AVAILABLE"));
             exit();

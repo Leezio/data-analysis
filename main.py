@@ -5,6 +5,7 @@ try:
     
     version = "v1.5.1";
 
+    # Console args -l -u etc...
     parser = argparse.ArgumentParser();
     parser.add_argument("-f","--filepath", nargs="?", help="Chemin du fichier de donnees");
     parser.add_argument("-u","--user", action="store_true", help="Activer l'interaction utilisateur");
@@ -42,12 +43,14 @@ try:
     
         while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT):
         
+            # Display main choice menu
             gui.getDisplayer().displayMainMenu();
         
             mainAnswer = gui.newAnswer(currentL10n.getL10n("ANSWER") + " ");
         
             while (mainAnswer != gui.getDisplayer().MAIN_MENU_EXIT and secondAnswer != gui.getDisplayer().SECOND_MENU_RETURN):
                  
+                # If the users want a menu, display second choice menu 
                 if (mainAnswer == gui.getDisplayer().SECOND_MENU_FILE):
                     gui.getDisplayer().displaySecondMenu();
                     gui.getDisplayer().displayFileMenu();
@@ -133,6 +136,7 @@ try:
         if args.log is not None:
             logFilepath = args.log;
             
+            # If log filepath end already with '/' character
             if args.log.endswith("/") is False:
                 logFilepath += "/" + currentLogFile.DEFAULT_LOG_FILE_NAME;
             else:
@@ -152,7 +156,9 @@ try:
         
     gui.clear();
 
+    # Exit message
     print(currentL10n.getL10n("BYE"));
 
+# If the user use ctrl-c command to interrupt program
 except (KeyboardInterrupt):
     exit();
